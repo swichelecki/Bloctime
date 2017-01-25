@@ -1,0 +1,55 @@
+*, *::before, *::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: 100%;
+}
+
+body {
+    min-height: 100%;
+    font-family: 'Open Sans';
+}
+
+/* TIMER WIDGET */
+
+.absolute-container {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    height: 10rem;
+    width: 15rem;
+    padding-left: 1.5rem;
+    
+}
+
+.timer {
+   font-size: 55px; 
+   font-weight: 400; 
+   padding-left: 1.5rem;    
+    
+}
+
+.start-button {
+    width: 12rem;
+    height: 3rem;
+    border-radius: 4px;
+    font-size: 26px;
+    font-weight: 400;
+    background-color: #999;
+    color: #f0f0f0;
+    padding: 6px 10px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:focus {
+    outline:0;
+}
+
+/* END TIMER WIDGET */
