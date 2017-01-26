@@ -1,4 +1,5 @@
 <section class="absolute-container">
-    <timer time="{{ landing.startTimer }}"></timer>
-    <button class="start-button" ng-click="landing.startReset()">{{ landing.start.key }}</button>
+    <timer time="{{ landing.Break.startTimer }}"></timer>
+    <button class="start-button" ng-hide="landing.Break.onBreak" ng-click="landing.startReset()">{{ landing.start.key }}</button>
+    <button class="break-button" ng-show="landing.Break.onBreak" ng-click="landing.breakStartRest()">{{ landing.break.key }}</button>
 </section>

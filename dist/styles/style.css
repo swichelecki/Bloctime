@@ -53,3 +53,22 @@ button:focus {
 }
 
 /* END TIMER WIDGET */
+
+/* BREAK STATE BUTTON */
+
+.break-button {
+    width: 12rem;
+    height: 3rem;
+    border-radius: 4px;
+    font-size: 26px;
+    font-weight: 400;
+    background-color: #999;
+    color: #f0f0f0;
+    padding: 6px 10px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* END BREAK STATE BUTTON */
