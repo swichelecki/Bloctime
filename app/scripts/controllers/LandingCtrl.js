@@ -2,31 +2,31 @@
     function LandingCtrl(Break) {
         
         this.Break = Break;
-        
-        this.start = {
+                
+      /*  this.start = {
             key: "Start"
         };
         
         this.break = {
             key: "Start"
-        };
+        }; */
         
         this.startReset = function() {
-            if (this.start.key === "Start") {
-                this.start.key = "Reset";
+            if (Break.start.key === "Start") {
+                Break.start.key = "Reset";
                 Break.startTimer = "Start";
-            } else if (this.start.key === "Reset") {
-                this.start.key = "Start"; 
+            } else if (Break.start.key === "Reset") {
+                Break.start.key = "Start"; 
                 Break.startTimer = "Reset";
             }
         };
         
         this.breakStartRest = function() {
-            if (this.break.key === "Start") {
-                this.break.key = "Reset";
+            if (Break.break.key === "Start") {
+                Break.break.key = "Reset";
                 Break.startTimer = "Break_Start";
-            } else if (this.break.key === "Reset") {
-                this.break.key = "Start";
+            } else if (Break.break.key === "Reset") {
+                Break.break.key = "Start";
                 Break.startTimer = "Break_Reset";
             }
         }
