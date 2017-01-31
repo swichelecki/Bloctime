@@ -23,18 +23,11 @@
                 //scope.breakNumbers = 300000;
                 //scope.longBreak = 1800000;
                 
-                scope.timeUi = "25:00";
+                scope.timeUi = "";
     
                 scope.milsToMinutes = function(numbers) {
-                    console.log("inside milsToMinutes");
-                    console.log("numbers", numbers);
-                    var minutes = Math.floor(numbers / 60000);
-                    console.log("minutes", minutes);
-                    var seconds = ((numbers % 60000) / 1000).toFixed(0);
-                    console.log("seconds", seconds);
-                    console.log("returning milsToMinutes");
-                        console.log("Value of onBreak in milsToMinutes: ", Break.onBreak);
-                    return (seconds == 60 ? (minutes+1) + ':00' : minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
+                    
+                    return numbers;
                 };
             
                 attributes.$observe('time', function(newValue) {
@@ -77,9 +70,10 @@
                 
                 scope.reset = function() {
                     $interval.cancel(scope.stop);
-                    scope.timeUi = "25:00";
+                    scope.timeUi = 6000;
                     scope.numbers = 6000;
-                   //scope.numbers = 1500000;
+                    //scope.timeUi = 1500000;
+                    //scope.numbers = 1500000;
                     console.log("Stop! this is reset()");
                 };
                 
@@ -87,14 +81,16 @@
                     
                     if (scope.breaks.length >= 4) { 
                         $interval.cancel(scope.stop);
-                        scope.timeUi = "30:00";
+                        scope.timeUi = 9000;
                         scope.longBreak = 9000;
+                        // scope.timeUi = 1800000;
                         //scope.longBreak = 1800000;
                     } else {
                         $interval.cancel(scope.stop);
-                        scope.timeUi = "5:00";
+                        scope.timeUi = 3000;
                         scope.breakNumbers = 3000;
                         //scope.breakNumbers = 300000;
+                        //scope.timeUi = 300000;
                         console.log("Stop!");
                     }
                 };
@@ -102,12 +98,12 @@
                 scope.checkTimerOne = function() {
                   var stopTimerOne = scope.milsToMinutes(scope.numbers);  
                       
-                  if (stopTimerOne === "0:00") {
+                  if (stopTimerOne === 0) {
                          scope.timeout(); 
                          scope.resetBreak();
                          Break.onBreak = true;
                          Break.start.key = "Start";
-                         scope.timeUi = "5:00";
+                         scope.timeUi = 3000;
                          console.log("Value of onBreak: ", Break.onBreak);
                    }
                 }; 
@@ -117,7 +113,7 @@
                     
                     console.log("stopTimerThree", stopTimerThree);
                     
-                    if (stopTimerThree === "0:00") {
+                    if (stopTimerThree === 0) {
                         scope.timeout();
                         Break.onBreak = false;
                         Break.break.key = "Start";
@@ -131,7 +127,7 @@
                 scope.checkBreakTimer = function() {
                     var stopTimerTwo = scope.milsToMinutes(scope.breakNumbers);
                 
-                   if (stopTimerTwo === "0:00") {
+                   if (stopTimerTwo === 0) {
                        scope.timeout();
                        scope.logBreak(1);
                        
@@ -140,7 +136,7 @@
                             Break.break.key = "Start";
                             Break.startTimer = null;
                             //Break.onBreak = true;
-                            scope.timeUi = "30:00";
+                            scope.timeUi = 9000;
                        } else {
                             Break.onBreak = false;
                             Break.break.key = "Start";

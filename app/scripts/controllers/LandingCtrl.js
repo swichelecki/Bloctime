@@ -2,14 +2,6 @@
     function LandingCtrl(Break) {
         
         this.Break = Break;
-                
-      /*  this.start = {
-            key: "Start"
-        };
-        
-        this.break = {
-            key: "Start"
-        }; */
         
         this.startReset = function() {
             if (Break.start.key === "Start") {
