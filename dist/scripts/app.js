@@ -17,5 +17,9 @@
     
     angular
         .module('bloctime', ['ui.router', 'firebase'])
+        .constant('INTERVALS', 
+                  {NUMS_1: 6000,
+                   NUMS_2: 3000,
+                   NUMS_3: 9000})
         .config(config);
 })();

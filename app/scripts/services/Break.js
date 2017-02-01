@@ -3,6 +3,11 @@
         
         Break = {};
         
+        Break.sound = new buzz.sound("/assets/sounds/DING.mp3", {
+            preload: true
+            
+        });
+        
         Break.onBreak = false;
         
         Break.start = {

@@ -1,5 +1,5 @@
 (function() {
-    function timer($interval, Break) {
+    function timer($interval, Break, INTERVALS) {
        
         return {
             templateUrl: '/templates/directives/timer.html',
@@ -13,15 +13,15 @@
                 
                 scope.breaks = [];
             
-                // TEST TIMES //
-                scope.numbers = 6000;
-                scope.breakNumbers = 3000;
-                scope.longBreak = 9000;
+                //TEST TIMES//
+                //INTERVALS.NUMS_1 = 6000;
+                //INTERVALS.NUMS_2 = 3000;
+                //INTERVALS.NUMS_3 = 9000;
                 
-                //REAL TIMES //
-                //scope.numbers = 1500000;
-                //scope.breakNumbers = 300000;
-                //scope.longBreak = 1800000;
+                //REAL TIMES//
+                //INTERVALS.NUMS_1 = 1500000;
+                //INTERVALS.NUMS_2 = 300000;
+                //INTERVALS.NUMS_3 = 1800000;
                 
                 scope.timeUi = "";
     
@@ -43,15 +43,15 @@
                 
                 scope.startResetTimer = function(time) {
                     if (time === "Start") {
-                        scope.timeUi = scope.milsToMinutes(scope.numbers);  
+                        scope.timeUi = scope.milsToMinutes(INTERVALS.NUMS_1);  
                         scope.start();
                     } else if (time === "Reset") {
                         scope.reset();
                     } else if (time === "Break_Start" && scope.breaks.length >= 4) {
-                        scope.timeUi = scope.milsToMinutes(scope.longBreak); 
+                        scope.timeUi = scope.milsToMinutes(INTERVALS.NUMS_3); 
                         scope.start();
                     } else if (time === "Break_Start") {
-                        scope.timeUi = scope.milsToMinutes(scope.breakNumbers);  
+                        scope.timeUi = scope.milsToMinutes(INTERVALS.NUMS_2);  
                         scope.start();
                     } else if (time === "Break_Reset") {
                         scope.resetBreak();
@@ -71,9 +71,9 @@
                 scope.reset = function() {
                     $interval.cancel(scope.stop);
                     scope.timeUi = 6000;
-                    scope.numbers = 6000;
+                    INTERVALS.NUMS_1 = 6000;
                     //scope.timeUi = 1500000;
-                    //scope.numbers = 1500000;
+                    //INTERVALS.NUMS_1 = 1500000;
                     console.log("Stop! this is reset()");
                 };
                 
@@ -82,21 +82,21 @@
                     if (scope.breaks.length >= 4) { 
                         $interval.cancel(scope.stop);
                         scope.timeUi = 9000;
-                        scope.longBreak = 9000;
+                        INTERVALS.NUMS_3 = 9000;
                         // scope.timeUi = 1800000;
-                        //scope.longBreak = 1800000;
+                        //INTERVALS.NUMS_3 = 1800000;
                     } else {
                         $interval.cancel(scope.stop);
                         scope.timeUi = 3000;
-                        scope.breakNumbers = 3000;
-                        //scope.breakNumbers = 300000;
+                        INTERVALS.NUMS_2 = 3000;
+                        //INTERVALS.NUMS_2 = 300000;
                         //scope.timeUi = 300000;
                         console.log("Stop!");
                     }
                 };
                 
                 scope.checkTimerOne = function() {
-                  var stopTimerOne = scope.milsToMinutes(scope.numbers);  
+                  var stopTimerOne = scope.milsToMinutes(INTERVALS.NUMS_1);  
                       
                   if (stopTimerOne === 0) {
                          scope.timeout(); 
@@ -105,11 +105,13 @@
                          Break.start.key = "Start";
                          scope.timeUi = 3000;
                          console.log("Value of onBreak: ", Break.onBreak);
+                         Break.sound.play();
+                         console.log("SCOPE.NOISE ", scope.noise);
                    }
                 }; 
                 
                 scope.checkLongBreakTimer = function() {
-                  var stopTimerThree = scope.milsToMinutes(scope.longBreak);  
+                  var stopTimerThree = scope.milsToMinutes(INTERVALS.NUMS_3);  
                     
                     console.log("stopTimerThree", stopTimerThree);
                     
@@ -120,12 +122,13 @@
                         scope.breaks.length = 0;
                         console.log("should be empty array: ", scope.breaks.length);
                         scope.reset();
-                        scope.longBreak = 9000;
+                        INTERVALS.NUMS_3 = 9000;
+                        Break.sound.play();
                     }
                 };
                 
                 scope.checkBreakTimer = function() {
-                    var stopTimerTwo = scope.milsToMinutes(scope.breakNumbers);
+                    var stopTimerTwo = scope.milsToMinutes(INTERVALS.NUMS_2);
                 
                    if (stopTimerTwo === 0) {
                        scope.timeout();
@@ -137,10 +140,12 @@
                             Break.startTimer = null;
                             //Break.onBreak = true;
                             scope.timeUi = 9000;
+                            Break.sound.play();
                        } else {
                             Break.onBreak = false;
                             Break.break.key = "Start";
                             scope.reset();
+                            Break.sound.play();
                        }  
                    }
                 };
@@ -157,20 +162,20 @@
                 
                 scope.countdown = function() {
                     if (scope.time === "Start") {
-                        scope.numbers -= 1000;
-                        scope.timeUi = scope.milsToMinutes(scope.numbers);  
+                        INTERVALS.NUMS_1 -= 1000;
+                        scope.timeUi = scope.milsToMinutes(INTERVALS.NUMS_1);  
                         scope.checkTimerOne();
-                        console.log(scope.numbers); 
+                        console.log(INTERVALS.NUMS_1); 
                         console.log(scope.timeUi, typeof scope.timeUi);
                     } else if (scope.breaks.length >= 4) {
-                        scope.longBreak -= 1000;
-                        console.log("LONG BREAK NUMS ", scope.longBreak);
-                        scope.timeUi = scope.milsToMinutes(scope.longBreak);
+                        INTERVALS.NUMS_3 -= 1000;
+                        console.log("LONG BREAK NUMS ", INTERVALS.NUMS_3);
+                        scope.timeUi = scope.milsToMinutes(INTERVALS.NUMS_3);
                         console.log("LONG BREAK UI ", scope.timeUi);
                         scope.checkLongBreakTimer();
                     } else if (scope.time === "Break_Start") {
-                        scope.breakNumbers -= 1000;
-                        scope.timeUi = scope.milsToMinutes(scope.breakNumbers);
+                        INTERVALS.NUMS_2 -= 1000;
+                        scope.timeUi = scope.milsToMinutes(INTERVALS.NUMS_2);
                         scope.checkBreakTimer();
                     }
                 };
@@ -182,6 +187,6 @@
     
     angular
         .module('bloctime')
-        .directive('timer', ['$interval', 'Break', timer]);
+        .directive('timer', ['$interval', 'Break', 'INTERVALS', timer]);
     
 })();
