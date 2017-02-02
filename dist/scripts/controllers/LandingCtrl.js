@@ -1,7 +1,9 @@
 (function() {
-    function LandingCtrl(Break) {
+    function LandingCtrl(Break, Tasks) {
         
         this.Break = Break;
+        
+        this.Tasks = Tasks;
         
         this.startReset = function() {
             if (Break.start.key === "Start") {
@@ -28,6 +30,6 @@
       
     angular
         .module('bloctime')
-        .controller('LandingCtrl', ['Break', LandingCtrl]);
+        .controller('LandingCtrl', ['Break', 'Tasks', LandingCtrl]);
     
 })();

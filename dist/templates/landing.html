@@ -1,5 +1,22 @@
-<section class="absolute-container">
-    <timer time="{{ landing.Break.startTimer }}"></timer>
-    <button class="start-button" ng-hide="landing.Break.onBreak" ng-click="landing.startReset()">{{ landing.Break.start.key }}</button>
-    <button class="break-button" ng-show="landing.Break.onBreak" ng-click="landing.breakStartRest()">{{ landing.Break.break.key }}</button>
-</section>
+<div class="bloctime-wrapper">
+    <section class="bloctime-left-side">
+        <h1>Task History</h1>
+        <input type="text" class="add-task" ng-model="newTask" >
+        <div class="button-container">
+            <button type="button" class="task-button" ng-click="landing.Tasks.addTask(newTask)">Add task</button>
+        </div> 
+        <section ng-repeat="task in landing.Tasks.tasks">
+            <div class="added-tasks" ng-class-even="'row-color'"> {{ task.value }} 
+            <a class="checkbox" ng-click="landing.Tasks.deleteTask(task)">
+                <span class="ion-ios-checkmark-outline"></span>
+            </a>  
+            </div>
+        </section> 
+    </section>
+    <section class="absolute-container">
+        <timer time="{{ landing.Break.startTimer }}"></timer>
+        <button class="start-button" ng-hide="landing.Break.onBreak" ng-click="landing.startReset()">{{ landing.Break.start.key }}</button>
+        <button class="break-button" ng-show="landing.Break.onBreak" ng-click="landing.breakStartRest()">{{ landing.Break.break.key }}</button>
+    </section> 
+</div>  
+    
