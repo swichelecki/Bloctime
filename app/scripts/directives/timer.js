@@ -70,8 +70,8 @@
                 
                 scope.reset = function() {
                     $interval.cancel(scope.stop);
-                    scope.timeUi = 6000;
-                    INTERVALS.NUMS_1 = 6000;
+                    scope.timeUi = 10000;
+                    INTERVALS.NUMS_1 = 10000;
                     //scope.timeUi = 1500000;
                     //INTERVALS.NUMS_1 = 1500000;
                     console.log("Stop! this is reset()");
@@ -81,14 +81,14 @@
                     
                     if (scope.breaks.length >= 4) { 
                         $interval.cancel(scope.stop);
-                        scope.timeUi = 9000;
-                        INTERVALS.NUMS_3 = 9000;
+                        scope.timeUi = 15000;
+                        INTERVALS.NUMS_3 = 15000;
                         // scope.timeUi = 1800000;
                         //INTERVALS.NUMS_3 = 1800000;
                     } else {
                         $interval.cancel(scope.stop);
-                        scope.timeUi = 3000;
-                        INTERVALS.NUMS_2 = 3000;
+                        scope.timeUi = 5000;
+                        INTERVALS.NUMS_2 = 5000;
                         //INTERVALS.NUMS_2 = 300000;
                         //scope.timeUi = 300000;
                         console.log("Stop!");
@@ -103,7 +103,7 @@
                          scope.resetBreak();
                          Break.onBreak = true;
                          Break.start.key = "Start";
-                         scope.timeUi = 3000;
+                         scope.timeUi = 5000;
                          console.log("Value of onBreak: ", Break.onBreak);
                          Break.sound.play();
                          console.log("SCOPE.NOISE ", scope.noise);
@@ -122,7 +122,7 @@
                         scope.breaks.length = 0;
                         console.log("should be empty array: ", scope.breaks.length);
                         scope.reset();
-                        INTERVALS.NUMS_3 = 9000;
+                        INTERVALS.NUMS_3 = 15000;
                         Break.sound.play();
                     }
                 };
@@ -139,7 +139,7 @@
                             Break.break.key = "Start";
                             Break.startTimer = null;
                             //Break.onBreak = true;
-                            scope.timeUi = 9000;
+                            scope.timeUi = 15000;
                             Break.sound.play();
                        } else {
                             Break.onBreak = false;

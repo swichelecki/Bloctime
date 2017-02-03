@@ -26,11 +26,20 @@
         
         Tasks.tasks = tasks;
         
-        Tasks.addTask = function(newTask) {
-        
+        Tasks.addTask = function(newTask, num) {
+
             var value = newTask;
             
-            tasks.$add({ value: value });
+            var indexNum = [];
+            
+            indexNum.push(num);
+            
+            var index = indexNum.length;
+            
+            tasks.$add({ 
+                value: value,
+                index: index,
+                       });
                
        };
         
